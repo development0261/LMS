@@ -1,7 +1,13 @@
 # 192.168.0.89
-import requests
+import geocoder
 
-URL = requests.get("https://ipinfo.io/")
-data = URL.json()
 
-print(data['city'])
+def get_Ip():
+    g = geocoder.ip('me')
+    print(g.latlng)
+    print(g.city)
+    print(g.state)
+    print(g.country)
+
+
+get_Ip()
