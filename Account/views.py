@@ -14,14 +14,18 @@ def course_details(request):
     URL = requests.get("https://ipinfo.io/")
     data = URL.json()
     city = ["New York City","Seattle", "Philadelphia", "Boston", "Chicago", "Los Angeles", "San Diego", "Dallas", "Houston", "Atlanta", "Miami"]
+
+    country = ["US","IN"]
     context = []
-    print(data)
-    if data['city'] in city:
+
+    if data['country'] in country:
         context.append({
-            'city' : data['city']
+            'country' : data['country']
         })
+
     else:
         context.append({
-            'city': "Unknown"
+            'country': "Unknown"
         })
-    return render(request, 'course-details.html', {'city_list':context[0]['city']})
+    print(context)
+    return render(request, 'course-details.html', {'city_list':context[0]['country']})
