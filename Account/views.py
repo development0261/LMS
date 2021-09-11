@@ -25,5 +25,5 @@ def course_details(request):
         context.append({
             'city': "Unknown"
         })
-    print(context)
+    print(data)
     return render(request, 'course-details.html', {'city_list': context[0]['city']})
