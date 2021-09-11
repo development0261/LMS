@@ -48,6 +48,6 @@ def course_details(request):
             'city': "Unknown"
         })
     print(latlng)
-    print(context[0]['city'])
+    print(city)
     return render(request, 'course-details.html', {'city_list': city})
     # return render(request, 'course-details.html', {'city_list': context[0]['city']})
