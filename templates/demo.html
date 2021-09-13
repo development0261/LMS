@@ -1,0 +1,18 @@
+<div id="result"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+<script>
+
+    $(document).ready(function (){
+        if ("geolocation" in navigator){ //check geolocation available
+		//try to get user current location using getCurrentPosition() method
+		navigator.geolocation.getCurrentPosition(function(position){
+				$("#result").html("Found your location <br />Lat : "+position.coords.latitude+" </br>Lang :"+ position.coords.longitude);
+			});
+	}else{
+		console.log("Browser doesn't support geolocation!");
+	}
+    })
+
+</script>
