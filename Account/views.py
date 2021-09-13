@@ -1,9 +1,13 @@
 from django.shortcuts import render
 import requests
-import geocoder
-
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.template.loader import render_to_string
+from geopy.geocoders import Nominatim
 
 # Create your views here.
+
+
 def index(request):
     return render(request, 'index.html')
 
@@ -12,42 +16,20 @@ def register(request):
     return render(request, 'account/register.html')
 
 
-# def course_details(request):
-#     URL = requests.get("https://ipinfo.io/")
-#     data = URL.json()
-#     city = ["New York City", "Philadelphia", "Toronto", "Boston", "Chicago", "Los Angeles", "San Diego", "Dallas",
-#             "Houston", "Atlanta", "Miami"]
-#     context = []
-#
-#     if data['city'] in city:
-#         context.append({
-#             'city': data['city']
-#         })
-#     else:
-#         context.append({
-#             'city': "Unknown"
-#         })
-#     print(data)
-#     return render(request, 'course-details.html', {'city_list': context[0]['city']})
-
 def course_details(request):
-    g = geocoder.ip('me')
-    list_city = ["New York City", "Surat", "Philadelphia", "Toronto", "Boston", "Chicago", "Los Angeles", "San Diego",
-                 "Dallas", "Houston", "Atlanta", "Miami"]
-    latlng = g.latlng
-    city = g.city
-    state = g.state
-    country = g.country
-    context = []
-    if city in list_city:
-        context.append({
-            'city': city
-        })
-    else:
-        context.append({
-            'city': "Unknown"
-        })
-    print(latlng)
-    print(city)
-    return render(request, 'course-details.html', {'city_list': city})
-    # return render(request, 'course-details.html', {'city_list': context[0]['city']})
+    return render(request, 'course-details.html')
+
+
+@csrf_exempt
+def ajax_filter(request):
+    if request.method == 'POST':
+        lat = request.POST.get('latitude')
+        lon = request.POST.get('longitude')
+        locator = Nominatim(user_agent="myGeocoder")
+        coordinates = "{}, {}".format(lat,lon)
+        location = locator.reverse(coordinates)
+        return JsonResponse({'data': location.raw})
+
+
+def demo(request):
+    return render(request, 'demo.html')

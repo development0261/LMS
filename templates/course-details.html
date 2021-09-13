@@ -21,6 +21,9 @@
           <div class="col-lg-8">
             <img src="{% static 'img/course-details.jpg' %}" class="img-fluid" alt="">
             <h3>Course Description</h3>
+              <div class="filterLoc"></div>
+              <span  id="latitude"></span> <span> / </span>
+              <span  id="longitude"></span>
             <p>
               Qui et explicabo voluptatem et ab qui vero et voluptas. Sint voluptates temporibus quam autem. Atque
               nostrum voluptatum laudantium a doloremque enim et ut dicta. Nostrum ducimus est iure minima totam
@@ -85,7 +88,7 @@
           <div class="col-lg-12">
             <div class="accordion" id="accordionPanelsStayOpenExample">
               <div class="accordion-item">
-        {% if city_list != "Unknown" %}
+
                 <h2 class="accordion-header" id="panelsStayOpen-headingOne">
 
 
@@ -93,7 +96,7 @@
                     data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
                     aria-controls="panelsStayOpen-collapseOne">
 
-                    Enrollment is open for Upcoming Blockchain Training Classes in {{ city_list }} City
+                    Enrollment is open for Upcoming Blockchain Training Classes in <span class="filterLoc"></span> City
                   </button>
                  </h2>
              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
@@ -107,22 +110,7 @@
                     can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                   </div>
                 </div>
-        {% else %}
-            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                    aria-controls="panelsStayOpen-collapseOne">
 
-                    Enrollment is closed for Upcoming Blockchain Training Classes
-                  </button>
-             </h2>
-            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                  aria-labelledby="panelsStayOpen-headingOne">
-                  <div class="accordion-body">
-                    Enrollment is closed,Wait for Upcoming Blockchain Training Classes.
-                  </div>
-                </div>
-        {% endif %}
 
 
               </div>
@@ -131,7 +119,7 @@
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
                     aria-controls="panelsStayOpen-collapseTwo">
-                   Weekends Blockchain Training Course Schedule in {{ city_list }} City
+                   Weekends Blockchain Training Course Schedule in <span class="filterLoc"></span> City
                   </button>
                 </h2>
                 <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"

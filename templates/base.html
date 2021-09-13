@@ -138,6 +138,7 @@
 
   <!-- Vendor JS Files -->
   <script src="{% static 'vendor/aos/aos.js' %}"></script>
+
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
   <script src="{% static 'vendor/purecounter/purecounter.js' %}"></script>
@@ -145,7 +146,66 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'js/main.js' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
+
+<script>
+$(document).ready(function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+})
+
+
+function showPosition(position) {
+    $("#latitude").html(position.coords.latitude);
+    $("#longitude").html(position.coords.longitude);
+
+        var latitude = position.coords.latitude
+        var longitude = position.coords.longitude
+
+    $.ajax({
+        type: "POST",
+        url: "{% url 'ajax_filter' %}",
+        data: {
+            latitude : latitude,
+            longitude : longitude,
+        },
+        dataType: "json",
+        success:function(res){
+            $(".filterLoc").append(`
+                <span>&nbsp; ${res.data.address['city']} &nbsp;</span>
+            `);
+
+            console.log(res.data.address['city'])
+        },
+    });
+}
+
+</script>
+
+{#<script type="text/javascript">#}
+{#        navigator.geolocation.getCurrentPosition(success, error);#}
+{##}
+{#        function success(position) {#}
+{#            console.log(position.coords.latitude)#}
+{#            console.log(position.coords.longitude)#}
+{##}
+{#            var GEOCODING = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + '%2C' + position.coords.longitude + '&language=en';#}
+{##}
+{#            $.getJSON(GEOCODING).done(function(location) {#}
+{#                console.log(location)#}
+{#            })#}
+{##}
+{#        }#}
+{##}
+{#        function error(err) {#}
+{#            console.log(err)#}
+{#        }#}
+{#    </script>#}
 </body>
 
 </html>
