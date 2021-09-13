@@ -1,18 +1,18 @@
-<button data-id="model" data-target="#mymodel">Open Model</button>
+<div id="result"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
-<div id="mymodel" class="model">
-  <div class="model-content">
-        <div class="modal-header">
-    <span class="close" data-close="model">&times;</span>
-          <h2>Modal Header</h2>
-    </div>
-        <div class="modal-body">
-      <p>Some text in the Modal Body</p>
-      <p>Some other text...</p>
-    </div>
-    <div class="modal-footer">
-      <h3>Modal Footer</h3>
-    </div>
-  </div>
-</div>
+<script>
 
+    $(document).ready(function (){
+        if ("geolocation" in navigator){ //check geolocation available
+		//try to get user current location using getCurrentPosition() method
+		navigator.geolocation.getCurrentPosition(function(position){
+				$("#result").html("Found your location <br />Lat : "+position.coords.latitude+" </br>Lang :"+ position.coords.longitude);
+			});
+	}else{
+		console.log("Browser doesn't support geolocation!");
+	}
+    })
+
+</script>
