@@ -22,6 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', ac_view.index,name="index"),
     path('courses/course_details', ac_view.course_details,name="course_details"),
+    path('courses/Surat', ac_view.upcoming_course_details_Surat,name="upcoming_course_details_Surat"),
+    path('courses/Seattle', ac_view.upcoming_course_details_Seattle,name="upcoming_course_details_Seattle"),
     path('demo', ac_view.demo,name="demo"),
     path('ajax_filter/', ac_view.ajax_filter,name="ajax_filter"),
     path('account/', include('Account.urls')),

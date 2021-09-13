@@ -1796,3 +1796,7 @@ section.register_wrp .log_sign_form.active .signinBx .imgBx {
 section.register_wrp.register_wrp {
   padding-top: 100px;
 }
+
+.City_link_css {
+  font-style: revert;font-size: 28px;box-shadow: 3px 3px 8px #f2aa4c;padding: 4px 4px 4px 4px;
+}

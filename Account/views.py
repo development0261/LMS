@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import render_to_string
 from geopy.geocoders import Nominatim
 
+
 # Create your views here.
 
 
@@ -26,9 +27,20 @@ def ajax_filter(request):
         lat = request.POST.get('latitude')
         lon = request.POST.get('longitude')
         locator = Nominatim(user_agent="myGeocoder")
-        coordinates = "{}, {}".format(lat,lon)
+        coordinates = "{}, {}".format(lat, lon)
         location = locator.reverse(coordinates)
-        return JsonResponse({'data': location.raw})
+        if location != "":
+            return JsonResponse({'data': location.raw})
+        else:
+            return JsonResponse({'data': "Unknown"})
+
+
+def upcoming_course_details_Surat(request):
+    return render(request, 'upcoming_course_details_Surat.html')
+
+
+def upcoming_course_details_Seattle(request):
+    return render(request, 'upcoming_course_details_Seattle.html')
 
 
 def demo(request):
