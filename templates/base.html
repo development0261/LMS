@@ -161,10 +161,12 @@ $(document).ready(function getLocation() {
 })
 
 
+
 function showPosition(position) {
     $("#latitude").html(position.coords.latitude);
     $("#longitude").html(position.coords.longitude);
 
+    $("#lati").val(position.coords.latitude)
         var latitude = position.coords.latitude
         var longitude = position.coords.longitude
 
@@ -178,7 +180,6 @@ function showPosition(position) {
         dataType: "json",
         success:function(res){
             var city_list = ['Seattle','Surat']
-
 
             if (city_list.includes(res.data.address['city'])){
                 var city_name = res.data.address['city']
@@ -206,11 +207,7 @@ function showPosition(position) {
                 `)
 
 
-            {#     $("#city_link").append(`#}
-            {#    <a href="/courses/${url}" target="_blank" style="color: #9166DC;">more...</a>#}
-            {#`)#}
             }
-
 
             else {
 
@@ -247,6 +244,45 @@ function showPosition(position) {
     });
 }
 
+</script>
+
+<script>
+navigator.permissions && navigator.permissions.query({name: 'geolocation'})
+    .then(function(PermissionStatus) {
+        if (PermissionStatus.state == 'granted') {
+            // granted
+
+        } else if (PermissionStatus.state == 'prompt') {
+              // prompt - not yet grated or denied
+            alert("prompt")
+        } else {
+             //denied
+             $("#location_base_data").append(`
+                 <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+
+
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                    aria-controls="panelsStayOpen-collapseOne">
+
+                    Enrollment is open for Upcoming Blockchain Training Classes in different Cities
+                  </button>
+                 </h2>
+                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                      aria-labelledby="panelsStayOpen-headingOne">
+                      <div class="accordion-body">
+                        <strong> This is a course for those</strong> who have no programming knowledge, yet would like to learn ethereum blockchain development,
+                          how to develop a blockchain application, smart contracts on ethereum blockchain application.
+                            <code>Choose Your City For Your Better Experience</code>
+<br><br>
+            <a href="/courses/Surat" class="City_link_css" target="_blank">Surat</a> &nbsp
+            <a href="/courses/Seattle" class="City_link_css" target="_blank">Seattle</a> &nbsp
+
+                      </div>
+                 </div>
+                `)
+        }
+    })
 </script>
 
 </body>
