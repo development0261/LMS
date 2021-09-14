@@ -42,7 +42,7 @@ def ajax_filter(request):
         print("**********")
         print("**********")
         if first_add != "":
-            return JsonResponse({'data': first_add,'second_add':second_add})
+            return JsonResponse({'data': first_add,'second_add':second_add,'first_index':first_index})
         else:
             return JsonResponse({'data': "Unknown"})
 

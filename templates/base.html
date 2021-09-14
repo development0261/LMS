@@ -188,7 +188,7 @@
         success:function(res){
             var city_list = ['Seattle','Surat','Toronto','Woodinville']
             $(".location_span").append(`
-            <p>${res.data}, ${res.second_add} </p>
+            <p>${res.first_index}</p>
             `)
             $("#location_base_data").append(`
                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
