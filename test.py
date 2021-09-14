@@ -2,7 +2,8 @@
 
 from geopy.geocoders import Nominatim
 locator = Nominatim(user_agent="myGeocoder")
-coordinates = "21.2074274, 72.7924497"
+# coordinates = "21.2074274, 72.7924497"
+coordinates = "22.3256529931974, 73.19187872984946"
 location = locator.reverse(coordinates)
 
 print(location.raw)

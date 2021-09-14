@@ -29,6 +29,7 @@ def ajax_filter(request):
         locator = Nominatim(user_agent="myGeocoder")
         coordinates = "{}, {}".format(lat, lon)
         location = locator.reverse(coordinates)
+        print(location.raw)
         if location != "":
             return JsonResponse({'data': location.raw})
         else:
