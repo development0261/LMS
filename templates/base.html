@@ -151,9 +151,11 @@
   <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
 
+
 <script>
      $(document).ready(function (){
-        if ("geolocation" in navigator){ //check geolocation available
+        if ("geolocation" in navigator){
+            //check geolocation available
 		navigator.geolocation.getCurrentPosition(function(position){
 
     $("#latitude").html(position.coords.latitude);
@@ -172,13 +174,9 @@
         },
         dataType: "json",
         success:function(res){
-            var city_list = ['Seattle','Surat','Toronto']
+            var city_list = ['Seattle','Surat','Toronto','Woodinville']
 
-            if (city_list.includes(res.data.address['city'])){
-                var city_name = res.data.address['city']
-                var url = city_name
-
-                $("#location_base_data").append(`
+            $("#location_base_data").append(`
                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
 
 
@@ -186,7 +184,7 @@
                     data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
                     aria-controls="panelsStayOpen-collapseOne">
 
-                    Enrollment is open for Upcoming Blockchain Training Classes in ${res.data.address['city']} City
+                    Enrollment is open for Upcoming Blockchain Training Classes in ${res.data}, ${res.second_add}
                   </button>
                  </h2>
                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
@@ -194,48 +192,14 @@
                       <div class="accordion-body">
                         <strong> This is a course for those</strong> who have no programming knowledge, yet would like to learn ethereum blockchain development,
                           how to develop a blockchain application, smart contracts on ethereum blockchain application.
-                        <a href="/courses/${url}" target="_blank" style="color: #9166DC;">more...</a>
-                      </div>
+                </div>
                  </div>
                 `)
-
-
-            }
-
-            else {
-
-                 $("#location_base_data").append(`
-                 <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-
-
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                    aria-controls="panelsStayOpen-collapseOne">
-
-                    Enrollment is open for Upcoming Blockchain Training Classes in different Cities
-                  </button>
-                 </h2>
-                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                      aria-labelledby="panelsStayOpen-headingOne">
-                      <div class="accordion-body">
-                        <strong> This is a course for those</strong> who have no programming knowledge, yet would like to learn ethereum blockchain development,
-                          how to develop a blockchain application, smart contracts on ethereum blockchain application.
-                            <code>Choose Your City For Your Better Experience</code>
-<br><br>
-            <a href="/courses/Surat" class="City_link_css" target="_blank">Surat</a> &nbsp
-            <a href="/courses/Seattle" class="City_link_css" target="_blank">Seattle</a> &nbsp
-
-                      </div>
-                 </div>
-                `)
-
-            }
-
-
 
         },
     });
 
+                        {#<a href="/courses/${res.data}" target="_blank" style="color: #9166DC;">more...</a>#}
 
 			});
 	}else{
@@ -245,18 +209,13 @@
 </script>
 
 
+
+
 {#<script>#}
-{#$(document).ready(function getLocation() {#}
-{#  if (navigator.geolocation) {#}
-{#    navigator.geolocation.getCurrentPosition(showPosition);#}
-{#  } else {#}
-{#    x.innerHTML = "Geolocation is not supported by this browser.";#}
-{#  }#}
-{#})#}
-
-
-
-{#function showPosition(position) {#}
+{#     $(document).ready(function (){#}
+{#        if ("geolocation" in navigator){ //check geolocation available#}
+{#		navigator.geolocation.getCurrentPosition(function(position){#}
+{##}
 {#    $("#latitude").html(position.coords.latitude);#}
 {#    $("#longitude").html(position.coords.longitude);#}
 {##}
@@ -273,11 +232,10 @@
 {#        },#}
 {#        dataType: "json",#}
 {#        success:function(res){#}
-{#            var city_list = ['Seattle','Surat']#}
+{#            var city_list = ['Seattle','Surat','Toronto','Woodinville']#}
 {##}
-{#            if (city_list.includes(res.data.address['city'])){#}
-{#                var city_name = res.data.address['city']#}
-{#                var url = city_name#}
+{#            if (city_list.includes(res.data)){#}
+{#                var city_name = res.data#}
 {##}
 {#                $("#location_base_data").append(`#}
 {#                 <h2 class="accordion-header" id="panelsStayOpen-headingOne">#}
@@ -287,7 +245,7 @@
 {#                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"#}
 {#                    aria-controls="panelsStayOpen-collapseOne">#}
 {##}
-{#                    Enrollment is open for Upcoming Blockchain Training Classes in ${res.data.address['city']} City#}
+{#                    Enrollment is open for Upcoming Blockchain Training Classes in ${res.data} City#}
 {#                  </button>#}
 {#                 </h2>#}
 {#                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"#}
@@ -295,7 +253,7 @@
 {#                      <div class="accordion-body">#}
 {#                        <strong> This is a course for those</strong> who have no programming knowledge, yet would like to learn ethereum blockchain development,#}
 {#                          how to develop a blockchain application, smart contracts on ethereum blockchain application.#}
-{#                        <a href="/courses/${url}" target="_blank" style="color: #9166DC;">more...</a>#}
+{#                        <a href="/courses/${res.data}" target="_blank" style="color: #9166DC;">more...</a>#}
 {#                      </div>#}
 {#                 </div>#}
 {#                `)#}
@@ -336,9 +294,15 @@
 {##}
 {#        },#}
 {#    });#}
-{#}#}
-
+{##}
+{##}
+{#			});#}
+{#	}else{#}
+{#		console.log("Browser doesn't support geolocation!");#}
+{#	}#}
+{#    })#}
 {#</script>#}
+
 
 <script>
 navigator.permissions && navigator.permissions.query({name: 'geolocation'})
@@ -366,8 +330,7 @@ navigator.permissions && navigator.permissions.query({name: 'geolocation'})
                           how to develop a blockchain application, smart contracts on ethereum blockchain application.
                             <code>Choose Your City For Your Better Experience</code>
 <br><br>
-            <a href="/courses/Surat" class="City_link_css" target="_blank">Surat</a> &nbsp
-            <a href="/courses/Seattle" class="City_link_css" target="_blank">Seattle</a> &nbsp
+
 
                       </div>
                  </div>
@@ -392,8 +355,7 @@ navigator.permissions && navigator.permissions.query({name: 'geolocation'})
                           how to develop a blockchain application, smart contracts on ethereum blockchain application.
                             <code>Choose Your City For Your Better Experience</code>
 <br><br>
-            <a href="/courses/Surat" class="City_link_css" target="_blank">Surat</a> &nbsp
-            <a href="/courses/Seattle" class="City_link_css" target="_blank">Seattle</a> &nbsp
+
 
                       </div>
                  </div>
@@ -401,7 +363,8 @@ navigator.permissions && navigator.permissions.query({name: 'geolocation'})
         }
     })
 </script>
-
+{#<a href="/courses/Surat" class="City_link_css" target="_blank">Surat</a> &nbsp#}
+{#            <a href="/courses/Seattle" class="City_link_css" target="_blank">Seattle</a> &nbsp#}
 </body>
 
 </html>

@@ -29,9 +29,19 @@ def ajax_filter(request):
         locator = Nominatim(user_agent="myGeocoder")
         coordinates = "{}, {}".format(lat, lon)
         location = locator.reverse(coordinates)
-        print(location.raw)
-        if location != "":
-            return JsonResponse({'data': location.raw})
+        data = list(location)
+        first_index = data[0]
+        split = first_index.split(",")
+        first_add = split[0]
+        second_add = split[1]
+        print("**********")
+        print("**********")
+        print(first_add)
+        print(second_add)
+        print("**********")
+        print("**********")
+        if first_add != "":
+            return JsonResponse({'data': first_add,'second_add':second_add})
         else:
             return JsonResponse({'data': "Unknown"})
 
