@@ -36,6 +36,7 @@ def ajax_filter(request):
         second_add = split[1]
         print("**********")
         print("**********")
+        print(first_index)
         print(first_add)
         print(second_add)
         print("**********")

@@ -22,8 +22,8 @@
             <img src="{% static 'img/course-details.jpg' %}" class="img-fluid" alt="">
             <h3>Course Description</h3>
               <div class="filterLoc"></div>
-              <span  id="latitude"></span> <span> / </span>
-              <span  id="longitude"></span>
+{#              <span  id="latitude"></span> <span> / </span>#}
+{#              <span  id="longitude"></span>#}
             <p>
               Qui et explicabo voluptatem et ab qui vero et voluptas. Sint voluptates temporibus quam autem. Atque
               nostrum voluptatum laudantium a doloremque enim et ut dicta. Nostrum ducimus est iure minima totam
@@ -64,9 +64,10 @@
             </div>
 
             <div class="course-location">
-              <h5>Location</h5>
-              <p>UpSkill Institute Skill Sharp Co New York City, NY 10036 United States.</p>
-              <a href="#">View Map</a>
+              <h5 >Location</h5>
+                <span class="location_span"></span>
+
+                <div id='map'></div>
             </div>
 
             <div class="course-policy">
@@ -469,10 +470,10 @@
       </div>
     </section>
 
+
     <!-- End Cource Details Tabs Section -->
 
   </main><!-- End #main -->
-
 
 
   <!-- ======= Footer ======= -->

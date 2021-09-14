@@ -151,6 +151,18 @@
   <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
 
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
+
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZGV2ZWxvcG1lbnQwMjYxIiwiYSI6ImNrdGpvZGVxZDFkczQyb3A4ZzZkMTA5dmcifQ.hOxbLiqP0JgqpL7cbqU6SA';
+  const map = new mapboxgl.Map({
+    container: 'map', // Container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // Map style to use
+    center: [72.7924497, 21.2074274], // Starting position [lng, lat]
+    zoom: 10, // Starting zoom level
+  });
+</script>
 
 <script>
      $(document).ready(function (){
@@ -175,7 +187,9 @@
         dataType: "json",
         success:function(res){
             var city_list = ['Seattle','Surat','Toronto','Woodinville']
-
+            $(".location_span").append(`
+            <p>${res.data}, ${res.second_add} </p>
+            `)
             $("#location_base_data").append(`
                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
 

@@ -1,18 +1,60 @@
-<div id="result"></div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#  <head>#}
+{#    <title>Interactive maps for Django web apps</title>#}
+{##}
+{#<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>#}
+{#<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />#}
+{##}
+{#  </head>#}
+{#  <body>#}
+{#   <h1>Map time!</h1>#}
+{##}
+{##}
+{#  <div id='map' style='width: 400px; height: 300px;'></div>#}
+{#<script>#}
+{#  mapboxgl.accessToken = 'pk.eyJ1IjoiZGV2ZWxvcG1lbnQwMjYxIiwiYSI6ImNrdGpvZGVxZDFkczQyb3A4ZzZkMTA5dmcifQ.hOxbLiqP0JgqpL7cbqU6SA';#}
+{#  var map = new mapboxgl.Map({#}
+{#    container: 'map',#}
+{#    style: 'mapbox://styles/mapbox/streets-v11'#}
+{#  });#}
+{#</script>#}
+{#  </body>#}
+{#</html>#}
 
+
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8' />
+  <title>Local search app</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
+  <style>
+   
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 374px;
+      height: 207px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id='map'></div>
 <script>
-
-    $(document).ready(function (){
-        if ("geolocation" in navigator){ //check geolocation available
-		//try to get user current location using getCurrentPosition() method
-		navigator.geolocation.getCurrentPosition(function(position){
-				$("#result").html("Found your location <br />Lat : "+position.coords.latitude+" </br>Lang :"+ position.coords.longitude);
-			});
-	}else{
-		console.log("Browser doesn't support geolocation!");
-	}
-    })
-
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZGV2ZWxvcG1lbnQwMjYxIiwiYSI6ImNrdGpvZGVxZDFkczQyb3A4ZzZkMTA5dmcifQ.hOxbLiqP0JgqpL7cbqU6SA';
+  const map = new mapboxgl.Map({
+    container: 'map', // Container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // Map style to use
+    center: [72.7924497, 21.2074274], // Starting position [lng, lat]
+    zoom: 10, // Starting zoom level
+  });
 </script>
+</body>
+</html>

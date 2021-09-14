@@ -1800,3 +1800,10 @@ section.register_wrp.register_wrp {
 .City_link_css {
   font-style: revert;font-size: 28px;box-shadow: 3px 3px 8px #f2aa4c;padding: 4px 4px 4px 4px;
 }
+
+
+#map {
+
+  width: 374px;
+  height: 207px;
+}
